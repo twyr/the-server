@@ -25,7 +25,7 @@ The chosen storage solution must:
 
 - Be as economical as possible
 
-Additional Drivers:
+Additional Drivers - it will be a plus if the storage solution also:
 
 - Allow creation and tracking of work items - new feature ideas,
   issues / bugs in existing features, etc.
@@ -41,10 +41,8 @@ Additional Drivers:
 
 There is no real reason why only one option out of the four needs to be
 picked - the distributed nature of the Git version control system allows
-for the artifacts to be stored in multiple places at the same time.
-
-This reduces the risk of access being denied due to issues with the
-storage solution.
+for the artifacts to be stored in multiple places at the same time, mitigating
+the risk of artifacts being inaccessible due to issues with the storage solution.
 
 The consensus is that all artifacts of "The Server" will be stored in
 two places:
@@ -102,4 +100,4 @@ VCS repositories. This space has a very long tail.
 
 For businesses, going with one of the long-tail options is a no-go, simply
 because the people working on the team may not be familiar / comfortable with
-the solution.
+those solutions.
