@@ -1,0 +1,28 @@
+{
+  "name": "the-server",
+  "version": "0.0.1",
+  "description": "Minimal Server running on node.js",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/twyr/the-server.git"
+  },
+  "keywords": [
+    "node",
+    "server",
+    "typescript",
+    "twyr"
+  ],
+  "author": "Vish Desai",
+  "license": "MITNFA",
+  "bugs": {
+    "url": "https://github.com/twyr/the-server/issues"
+  },
+  "homepage": "https://github.com/twyr/the-server#readme"
+}
