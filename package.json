@@ -1,28 +1,126 @@
 {
-  "name": "the-server",
-  "version": "0.0.1",
-  "description": "Minimal Server running on node.js",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/twyr/the-server.git"
-  },
-  "keywords": [
-    "node",
-    "server",
-    "typescript",
-    "twyr"
-  ],
-  "author": "Vish Desai",
-  "license": "MITNFA",
-  "bugs": {
-    "url": "https://github.com/twyr/the-server/issues"
-  },
-  "homepage": "https://github.com/twyr/the-server#readme"
+	"name": "@twyr/the-server",
+	"displayName": "Twy'r, the Server",
+	"description": "Minimal Server running on node.js",
+	"homepage": "https://github.com/twyr/the-server#readme",
+	"license": "MITNFA",
+	"version": "0.0.1",
+	"readme": "README.md",
+	"type": "module",
+	"main": "source/index.js",
+	"keywords": [
+		"node",
+		"server",
+		"javascript",
+		"typescript",
+		"twyr"
+	],
+	"author": {
+		"name": "Vish Desai",
+		"email": "shadyvd@hotmail.com",
+		"url": "https://github.com/shadyvd"
+	},
+	"contributors": [
+		{
+			"name": "Vish Desai",
+			"email": "shadyvd@hotmail.com",
+			"url": "https://github.com/shadyvd"
+		}
+	],
+	"maintainers": [
+		{
+			"name": "Vish Desai",
+			"email": "shadyvd@hotmail.com",
+			"url": "https://github.com/shadyvd"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://github.com/twyr/the-server.git"
+	},
+	"bugs": {
+		"url": "https://github.com/twyr/the-server/issues"
+	},
+	"dependencies": {
+		"please-upgrade-node": "3.2.0"
+	},
+	"devDependencies": {
+		"@appku/jsdoc-template": "1.1.7",
+		"@commitlint/cli": "17.0.3",
+		"@commitlint/config-conventional": "17.0.3",
+		"chai": "4.3.6",
+		"commitizen": "4.2.5",
+		"cz-customizable": "6.9.1",
+		"dependency-cruiser": "11.13.0",
+		"editorconfig": "0.15.3",
+		"eslint": "8.20.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-editorconfig": "4.0.2",
+		"eslint-plugin-jsdoc": "39.3.3",
+		"eslint-plugin-json": "3.1.0",
+		"eslint-plugin-mocha": "10.1.0",
+		"eslint-plugin-node": "11.1.0",
+		"eslint-plugin-prettier": "4.2.1",
+		"eslint-plugin-security": "1.5.0",
+		"eslint-plugin-security-node": "1.1.1",
+		"eslint-plugin-unicorn": "43.0.2",
+		"eslintcc": "0.7.15",
+		"git-split-diffs": "0.10.0",
+		"grunt": "1.5.3",
+		"grunt-contrib-clean": "2.0.1",
+		"grunt-coveralls": "2.0.0",
+		"grunt-env": "1.0.1",
+		"grunt-eslint": "24.0.0",
+		"grunt-exec": "3.0.0",
+		"grunt-jsbeautifier": "0.2.13",
+		"grunt-xmlstoke": "0.7.1",
+		"husky": "8.0.1",
+		"is-ci": "3.0.1",
+		"jsdoc": "3.6.11",
+		"js-beautify": "1.14.4",
+		"lint-staged": "13.0.3",
+		"load-grunt-tasks": "5.1.0",
+		"mocha": "10.0.0",
+		"mocha-junit-reporter": "2.0.2",
+		"npm-check-updates": "16.0.3",
+		"nyc": "15.1.0",
+		"prettier": "2.7.1",
+		"prettier-plugin-jsdoc": "0.3.38",
+		"sloc": "0.2.1"
+	},
+	"scripts": {
+		"build": "npx --no-install grunt --gruntfile gruntfile.cjs",
+		"clean": "mkdir -p ./docs/api && rm -rf ./docs/api && mkdir -p ./buildresults && rm -rf ./buildresults && mkdir -p ./coverage && rm -rf ./coverage && mkdir -p ./logs && touch ./logs/init.log && rm -f ./logs/*.log && mkdir -p ./.nyc_output && rm -rf ./.nyc_output && mkdir -p ./depcruise && rm -rf ./depcruise && mkdir -p ./stats && rm -rf ./stats",
+		"docs": "npx --no-install jsdoc --verbose --configure ./.jsdocrc.json",
+		"deps": "mkdir -p depcruise && npx --no-install depcruise --config ./.dependency-cruiser.cjs --output-type json -f ./depcruise/deps.json . && npx --no-install depcruise --config ./.dependency-cruiser.cjs --output-type archi . | dot -T svg > ./depcruise/architecture.svg && npx --no-install depcruise --config ./.dependency-cruiser.cjs --output-type err-html -f ./depcruise/error.html .",
+		"force-build": "npx --no-install grunt --force",
+		"lint": "npm run lint:js && npm run lint:misc",
+		"lint:fix": "npm run lint:js:fix && npm run lint:misc:fix",
+		"lint:js": "npx --no-install prettier './**/*.{js,json}' --no-error-on-unmatched-pattern --cache --list-different && npx --no-install eslint './**/*.{js,json}' --no-error-on-unmatched-pattern --cache",
+		"lint:js:fix": "npx --no-install prettier './**/*.{js,json}' --no-error-on-unmatched-pattern --cache --write && npx --no-install eslint './**/*.{js,json}' --no-error-on-unmatched-pattern --cache --fix",
+		"lint:misc": "npx --no-install prettier './**/*.{html,yml}' --no-error-on-unmatched-pattern --cache --list-different",
+		"lint:misc:fix": "npx --no-install prettier './**/*.{html,yml}' --no-error-on-unmatched-pattern --cache --write",
+		"prepare": "is-ci || npx --no-install husky install",
+		"start": "node source/index.js",
+		"stats": "mkdir -p stats && npm run stats:cc-text && npm run stats:cc-json && npm run stats:sloc-json && npm run stats:sloc-table",
+		"stats:cc-text": "npx --no-install eslintcc --average --greater-than e --max-rank f --format text --no-inline-config . | tee ./stats/complexity.txt",
+		"stats:cc-json": "npx --no-install eslintcc --average --greater-than e --max-rank f --format json --no-inline-config . > ./stats/complexity.json",
+		"stats:sloc-table": "npx --no-install sloc --details --format cli-table --exclude '.husky|.github|.vscode|buildresults|coverage|depcruise|deploy|docs|jsdoc_default|log|node_modules|stats|templates|.commitlintrc.json|.cz.config.cjs|.dependency-cruiser.cjs|ecosystem.config.cjs|gruntfile.cjs|test-results.xml' --keys source,comment,todo,empty,total . | tee ./stats/sloc.txt",
+		"stats:sloc-json": "npx --no-install sloc --details --format json --exclude '.husky|.github|.vscode|buildresults|coverage|depcruise|deploy|docs|jsdoc_default|log|node_modules|stats|templates|.commitlintrc.json|.cz.config.cjs|.dependency-cruiser.cjs|ecosystem.config.cjs|gruntfile.cjs|test-results.xml' . > ./stats/sloc.json",
+		"test": "npm run test:run && npm run test:coverage",
+		"test:coverage": "NODE_ENV=test npx --no-install nyc --reporter=cobertura --reporter=lcovonly --reporter=text --reporter=text-summary mocha",
+		"test:run": "NODE_ENV=test npx --no-install mocha --reporter=spec"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"directories": {
+		"doc": "docs",
+		"test": "tests"
+	},
+	"config": {
+		"cz-customizable": {
+			"config": "./.cz-config.cjs"
+		}
+	}
 }
